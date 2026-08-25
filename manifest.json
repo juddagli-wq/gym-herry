@@ -1,29 +1,33 @@
 {
-  "id": "/herry-gym",
+  "id": "https://juddagli-wq.github.io/gym-herry/",
   "name": "Herry Gym",
   "short_name": "Herry",
+  "lang": "tr",
   "description": "İşaretli hareketlerin animasyonlu programı",
-  "start_url": "./",
-  "scope": "./",
+  "start_url": "/gym-herry/",
+  "scope": "/gym-herry/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "orientation": "portrait",
   "background_color": "#07080c",
   "theme_color": "#07080c",
+  "categories": ["health", "fitness"],
+  "prefer_related_applications": false,
   "icons": [
     {
-      "src": "icons/icon-192.png",
+      "src": "/gym-herry/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "icons/icon-512.png",
+      "src": "/gym-herry/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "icons/icon-512.png",
+      "src": "/gym-herry/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

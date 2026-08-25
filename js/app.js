@@ -352,7 +352,7 @@ function setupDesktopQr() {
 }
 
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js").catch(() => {});
+  navigator.serviceWorker.register("sw.js", { scope: "/gym-herry/", updateViaCache: "none" }).catch(() => {});
 }
 
 function applyHash() {
@@ -411,31 +411,33 @@ function setupPwaInstall() {
     pop.classList.add("hidden");
   });
 
+  btn.classList.remove("hidden");
   if (isIOS) {
-    btn.classList.add("hidden");
     ios.classList.remove("hidden");
     andr.classList.add("hidden");
-    pop.classList.remove("hidden");
+    btn.classList.add("hidden");
   } else if (isAndroid) {
     ios.classList.add("hidden");
-    andr.classList.remove("hidden");
-    btn.classList.add("hidden");
-    pop.classList.remove("hidden");
-  } else {
-    pop.classList.remove("hidden");
     andr.classList.add("hidden");
+  } else {
     ios.classList.add("hidden");
+    andr.classList.add("hidden");
   }
+  pop.classList.remove("hidden");
 
   btn.onclick = async () => {
     if (deferred) {
       deferred.prompt();
-      await deferred.userChoice;
-      pop.classList.add("hidden");
+      const choice = await deferred.userChoice;
+      deferred = null;
+      if (choice.outcome === "accepted") pop.classList.add("hidden");
       return;
     }
-    if (isIOS) ios.classList.remove("hidden");
-    else andr.classList.remove("hidden");
+    if (isIOS) {
+      ios.classList.remove("hidden");
+      return;
+    }
+    andr.classList.remove("hidden");
   };
 
   later.onclick = () => {
